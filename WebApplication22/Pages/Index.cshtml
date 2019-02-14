@@ -1,0 +1,52 @@
+﻿@page
+@model IndexModel
+@{
+    ViewData["Title"] = "Home page";
+
+    var sbtext = Request.Query["sb"];
+    var output = " ";
+
+    if (!string.IsNullOrEmpty(sbtext))
+        { output = "Messages sent"; }
+}
+
+
+<nav class="navbar">
+    <div class="container">
+        <a asp-page="/Index" class="navbar-brand">Visma Azure Serverless</a>
+    </div>
+</nav>
+<p>&nbsp;</p>
+<form method="get" action="/">
+    <table align="center" style="background-color:white;">
+        <tr>
+            <td>
+                <table style="margin:40px;">
+                    <tr>
+                        <td>Service Bus ConnectionString:</td>
+                        <td><input type="text" name="sb" id="sb" class="form-control" style="width:500px;" value="@sbtext" placeholder="Insert your Service Bus ConnectionString" /> </td>
+                    </tr>
+                    <tr>
+                        <td>Service Bus Topic:</td>
+                        <td><input type="text" name="topic" id="topic" class="form-control" style="width:500px;" value="salesmessages" /> </td>
+                    </tr>
+                    <tr>
+                        <td>Number of messages:</td>
+                        <td><input type="number" name="num" id="num" class="form-control" style="width:500px;" min="1" max="50" placeholder="Number of messages (min 1 max 50)" /> </td>
+                    </tr>
+                    <tr>
+                        <td>Message content:</td>
+                        <td><input type="text" name="content" id="content" class="form-control" style="width:500px;" placeholder="Message content" /> </td>
+                    </tr>
+                    <tr>
+                        <td style="color:red;">@output</td>
+                        <td align="right"> <button type="submit" class="btn btn-default">Submit</button></td>
+                    </tr>
+                </table>
+            </td>
+        </tr>
+    </table>
+</form>
+<p></p>
+
+
