@@ -2,8 +2,13 @@
 @model IndexModel
 @{
     ViewData["Title"] = "Home page";
+    
 
-    var sbtext = Request.Query["sb"];
+
+    var sbtext= Environment.GetEnvironmentVariable("ServiceBus");
+    if (string.IsNullOrEmpty(sbtext))
+        {sbtext = Request.Query["sb"];}
+
     var output = " ";
 
     if (!string.IsNullOrEmpty(sbtext))
@@ -31,8 +36,11 @@
                         <td><input type="text" name="topic" id="topic" class="form-control" style="width:500px;" value="salesmessages" /> </td>
                     </tr>
                     <tr>
+                        <td colspan="2"><hr /> </td>
+                    </tr>
+                    <tr>
                         <td>Number of messages:</td>
-                        <td><input type="number" name="num" id="num" class="form-control" style="width:500px;" min="1" max="50" placeholder="Number of messages (min 1 max 50)" /> </td>
+                        <td><input type="number" name="num" id="num" class="form-control" style="width:500px;" min="1" max="10" placeholder="Number of messages (min 1 max 10)" /> </td>
                     </tr>
                     <tr>
                         <td>Message content:</td>
