@@ -1,0 +1,16 @@
+apiVersion : apps/v1beta1
+kind: Deployment
+metadata:
+  name: "alamo"
+spec:
+  replicas: 2
+  template:
+    metadata:
+      labels:
+        app: "alamo"
+    spec:
+      containers:
+        - name: "alamo"
+          image: "xxxxxvi.azurecr.io/alamo"
+          ports:
+          - containerPort: 80
