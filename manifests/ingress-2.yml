@@ -1,0 +1,17 @@
+apiVersion: extensions/v1beta1
+kind: Ingress
+metadata:
+    name: "alamo"
+    labels:
+        app: "alamo"
+    annotations:
+        kubernetes.io/ingress.class: addon-http-application-routing
+spec:
+    rules:
+        - host: alamob81c-alamo.797b1b3c4af245379433.westus.aksapp.io
+          http:
+            paths:
+            - path: /
+              backend:
+                serviceName: "alamo"
+                servicePort: 80
